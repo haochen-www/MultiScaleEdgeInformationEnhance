@@ -28,7 +28,7 @@ class EdgeEnhancer(nn.Module):
         return out
 
 
-class MutilScaleEdgeInformationEnhance(nn.Module):
+class MultiScaleEdgeInformationEnhance(nn.Module):
     def __init__(self, inc, bins):
         super().__init__()
 
@@ -55,7 +55,7 @@ class MutilScaleEdgeInformationEnhance(nn.Module):
         return self.final_conv(torch.cat(out, 1))
 
 
-class CSP_MutilScaleEdgeInformationEnhance(C2f):
+class CSP_MultiScaleEdgeInformationEnhance(C2f):
     def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
         super().__init__(c1, c2, n, shortcut, g, e)
-        self.m = nn.ModuleList(MutilScaleEdgeInformationEnhance(self.c, [3, 6, 9, 12]) for _ in range(n))
+        self.m = nn.ModuleList(MultiScaleEdgeInformationEnhance(self.c, [3, 6, 9, 12]) for _ in range(n))
