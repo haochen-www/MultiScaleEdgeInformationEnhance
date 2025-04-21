@@ -7,10 +7,10 @@ class EdgeEnhancer(nn.Module):
         self.pool_w = nn.AdaptiveAvgPool2d((1, None))
         gc = in_dim // 2
         self.excite = nn.Sequential(
-            nn.Conv2d(in_dim, gc, kernel_size=(1, 3), padding=(0, 3 // 2), groups=gc),
+            nn.Conv2d(in_dim, gc, kernel_size=(1, 11), padding=(0, 11 // 2), groups=gc),
             nn.BatchNorm2d(gc),
             nn.ReLU(inplace=True),
-            nn.Conv2d(gc, in_dim, kernel_size=(3, 1), padding=(3 // 2, 0), groups=gc),
+            nn.Conv2d(gc, in_dim, kernel_size=(11, 1), padding=(11 // 2, 0), groups=gc),
             nn.Sigmoid()
         )
     def sge(self, x):
